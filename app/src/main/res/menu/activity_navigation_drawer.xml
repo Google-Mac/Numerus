@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/home"/>
+        <item
+            android:id="@+id/nav_ciphers"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/ciphers"/>
+        <item
+            android:id="@+id/nav_learn"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/learn"/>
+    </group>
+
+    <item android:title="@string/extra">
+        <menu>
+            <item
+                android:id="@+id/nav_share_with_friends"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/share_with_friends"/>
+        </menu>
+    </item>
+
+</menu>
