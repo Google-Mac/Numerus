@@ -78,4 +78,11 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
+    <string name="title_activity_caesar_cipher">CaesarCipherActivity</string>
+    <string name="vigen_re_cipher">Vigenère Cipher</string>
+    <string name="columnar_transposition">Columnar Transposition</string>
+    <string name="rot_13">Rot-13</string>
+    <string name="title_activity_rot13">Rot13Activity</string>
+    <string name="title_activity_vigenere">VigenereActivity</string>
+    <string name="title_activity_column_trans">ColumnTransActivity</string>
 </resources>
