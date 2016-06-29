@@ -9,8 +9,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Caesar Cipher"
-        android:id="@+id/textView"
+        android:text="Binary Encoder"
+        android:id="@+id/textView_binary"
         android:layout_gravity="center_horizontal"
         android:textSize="32dp"
         android:layout_marginTop="5dp" />
@@ -27,22 +27,22 @@
         <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/radioGroup"
+            android:id="@+id/radioGroup_binary"
             android:layout_gravity="center_vertical">
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rotation"
-                android:id="@+id/radioButton"
+                android:text="Text to Binary"
+                android:id="@+id/radioButton_binary"
                 android:checked="true"
                 android:textSize="18dp" />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Code Word"
-                android:id="@+id/radioButton2"
+                android:text="Binary to Text"
+                android:id="@+id/radioButton2_binary"
                 android:checked="false"
                 android:textSize="18dp" />
 
@@ -52,35 +52,19 @@
             android:layout_width="94dp"
             android:layout_height="match_parent" />
 
-        <NumberPicker
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/numberPicker"
-            android:orientation="vertical"
-            android:baselineAligned="false"
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="center_vertical|right" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText2"
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="center_vertical|right" />
-
     </LinearLayout>
 
     <Button
         android:layout_width="147dp"
         android:layout_height="wrap_content"
         android:text="Clear"
-        android:id="@+id/button"
+        android:id="@+id/button_binary"
         android:layout_gravity="center_horizontal" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:id="@+id/editText"
+        android:id="@+id/editText_binary"
         android:layout_gravity="center_vertical"
         android:hint="Enter message here"
         android:layout_weight="33"
@@ -91,7 +75,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:id="@+id/textView2"
+        android:id="@+id/textView2_binary"
         android:focusable="true"
         android:textIsSelectable="true"
         android:hint="Encoded message will appear here"

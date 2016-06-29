@@ -25,7 +25,7 @@ public class ColumnTransActivity extends AppCompatActivity {
 
         Utils.onActivityCreateSetTheme(this);
 
-        setContentView(R.layout.activity_caesar_cipher);
+        setContentView(R.layout.activity_column_trans);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

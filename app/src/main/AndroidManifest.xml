@@ -28,7 +28,7 @@
             android:theme="@style/AppTheme">
         </activity>
         <activity
-            android:name=".Rot13Activity"
+            android:name=".BinaryActivity"
             android:label="@string/title_activity_rot13"
             android:theme="@style/AppTheme">
         </activity>

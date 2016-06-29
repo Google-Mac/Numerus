@@ -11,8 +11,8 @@
         android:layout_weight="1"/>
 
     <Button
-        android:id="@+id/rot_13_button"
-        android:text="@string/rot_13"
+        android:id="@+id/binary_button"
+        android:text="@string/binary"
         android:layout_width="match_parent"
         android:layout_height="115dp"
         android:layout_weight="2"/>
