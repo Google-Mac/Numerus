@@ -135,22 +135,22 @@ public class VigenereActivity extends AppCompatActivity {
     public void onPause() {
         super.onPause();
 
-        SharedPreferences settings = getSharedPreferences("cipherPrefs_vigenere", 0);
+        SharedPreferences settings = getSharedPreferences("cipherPrefsVigenere", 0);
         SharedPreferences.Editor editor = settings.edit();
         saveState(editor);
         editor.commit();
     }
 
     public void saveState(SharedPreferences.Editor editor) {
-        editor.putString("inputText_vigenere", inputText_vigenere.getText().toString());
-        editor.putString("codeword_vigenere", codewordText_vigenere.getText().toString());
+        editor.putString("inputTextVigenere", inputText_vigenere.getText().toString());
+        editor.putString("codewordVigenere", codewordText_vigenere.getText().toString());
     }
 
     public void loadState() {
-        SharedPreferences settings = getSharedPreferences("cipherPrefs_vigenere", 0);
+        SharedPreferences settings = getSharedPreferences("cipherPrefsVigenere", 0);
 
-        inputText_vigenere.setText(settings.getString("inputText_vigenere", ""));
-        codewordText_vigenere.setText(settings.getString("codeword_vigenere", ""));
+        inputText_vigenere.setText(settings.getString("inputTextVigenere", ""));
+        codewordText_vigenere.setText(settings.getString("codewordVigenere", ""));
         refreshCipherText();
     }
 
