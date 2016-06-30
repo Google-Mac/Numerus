@@ -8,6 +8,7 @@ import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +18,10 @@ import android.widget.NumberPicker;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import static android.R.attr.filter;
+import static android.R.attr.x;
 import static com.myprojects.numerus.spark_000.numerus.R.id.radioGroup;
+import static com.myprojects.numerus.spark_000.numerus.R.string.binary;
 
 public class BinaryActivity extends AppCompatActivity {
 
@@ -47,6 +51,30 @@ public class BinaryActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        final InputFilter letterOnlyFilter = new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                for ( int i = start; i < end; i++) {
+                    if (!Character.isLetter(source.charAt(i)) && source.charAt(i) != ' ') {
+                        return "";
+                    }
+                }
+                return null;
+            }
+        };
+
+        final InputFilter numberOnlyFilter = new InputFilter() {
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                for ( int i = start; i < end; i++) {
+                    if (!Character.isDigit(source.charAt(i)) && source.charAt(i) != ' ') {
+                        return "";
+                    }
+                }
+                return null;
+            }
+        };
+
         cipherText_binary = (TextView)findViewById(R.id.textView2_binary);
 
         radioGroup_binary = (RadioGroup)findViewById(R.id.radioGroup_binary);
@@ -55,11 +83,11 @@ public class BinaryActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 switch(i) {
-                    case R.id.radioButton:
-                        computeBinaryCipher(inputText_binary.getText().toString());
+                    case R.id.radioButton_binary:
+                        inputText_binary.setFilters(new InputFilter[]{letterOnlyFilter});
                         break;
-                    case R.id.radioButton2:
-                        /** TODO: Create a binary-to-text function */
+                    case R.id.radioButton2_binary:
+                        inputText_binary.setFilters(new InputFilter[]{numberOnlyFilter});
                         break;
                 }
                 refreshCipherText();
@@ -84,19 +112,6 @@ public class BinaryActivity extends AppCompatActivity {
             public void afterTextChanged(Editable editable) {}
         });
 
-        InputFilter filter = new InputFilter() {
-            @Override
-            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-                for ( int i = start; i < end; i++) {
-                    if (!Character.isLetter(source.charAt(i)) && source.charAt(i) != ' ') {
-                        return "";
-                    }
-                }
-                return null;
-            }
-        };
-
-        inputText_binary.setFilters(new InputFilter[]{filter});
 
         clearButton_binary = (Button)findViewById(R.id.button_binary);
         clearButton_binary.setOnClickListener(new View.OnClickListener() {
@@ -108,6 +123,17 @@ public class BinaryActivity extends AppCompatActivity {
         });
 
         loadState();
+
+        switch(radioGroup_binary.getCheckedRadioButtonId()) {
+            case R.id.radioButton_binary:
+                inputText_binary.setFilters(new InputFilter[]{letterOnlyFilter});
+                /*computeBinaryCipher(inputText_binary.getText().toString());*/
+                break;
+            case R.id.radioButton2_binary:
+                inputText_binary.setFilters(new InputFilter[]{numberOnlyFilter});
+                /*computeTextCipher(inputText_binary.getText().toString());*/
+                break;
+        }
 
     } //end onCreate
 
@@ -144,64 +170,69 @@ public class BinaryActivity extends AppCompatActivity {
 
     public void saveState(SharedPreferences.Editor editor) {
         editor.putString("inputTextBinary", inputText_binary.getText().toString());
-        editor.putInt("checkedRadiobutton", radioGroup_binary.getCheckedRadioButtonId());
+        editor.putInt("checkedRadiobuttonBinary", radioGroup_binary.getCheckedRadioButtonId());
     }
 
     public void loadState() {
         SharedPreferences settings = getSharedPreferences("cipherPrefsBinary", 0);
 
         inputText_binary.setText(settings.getString("inputTextBinary", ""));
-        radioGroup_binary.check(settings.getInt("checkedRadiobutton", R.id.radioButton_binary));
+        radioGroup_binary.check(settings.getInt("checkedRadiobuttonBinary", R.id
+                .radioButton_binary));
         refreshCipherText();
     }
 
     public void refreshCipherText() {
-        StringBuilder binary = computeBinaryCipher(inputText_binary.getText().toString());
-        cipherText_binary.setText(binary);
+        try {
+            String output = computeCipher(inputText_binary.getText().toString());
+            cipherText_binary.setText(output);
+        } catch (Exception e) {
+            Log.d("BINARY_FIX", "refreshCipherText called");
+        }
     }
 
-    /*public String computeCipher(String input) {
+    /** TODO: Fix */
+    public String computeCipher(String input) {
         if (radioGroup_binary.getCheckedRadioButtonId() == R.id.radioButton_binary) {
-            return computeBinaryCipher(rotationPicker.getValue(), input);
+            try {
+                return computeBinaryCipher(input).toString();
+            } catch (Exception e) {
+                Log.d("BINARY_FIX", "radio button 1 called in computeCipher");
+            }
         } else if (radioGroup_binary.getCheckedRadioButtonId() == R.id.radioButton2_binary) {
-            return computeTextCipher(codewordText.getText().toString(), input);
+            try {
+                return computeTextCipher(input);
+            } catch (Exception e) {
+                Log.d("BINARY_FIX", "radio button 1 called in computeCipher");
+            }
         }
         return "";
-    }*/
+    }
 
     public StringBuilder computeBinaryCipher(String s) {
         /*String s = "foo";*/
         byte[] bytes = s.getBytes();
-        StringBuilder binary = new StringBuilder();
+        StringBuilder output = new StringBuilder();
         for (byte b : bytes)
         {
             int val = b;
             for (int i = 0; i < 8; i++)
             {
-                binary.append((val & 128) == 0 ? 0 : 1);
+                output.append((val & 128) == 0 ? 0 : 1);
                 val <<= 1;
             }
-            binary.append(' ');
+            output.append(' ');
         }
-        return binary;
+        return output;
     }
 
-    /*public StringBuilder computeTextCipher(String s) {
-        *//*String s = "foo";*//*
-        byte[] bytes = s.getBytes();
-        StringBuilder binary = new StringBuilder();
-        for (byte b : bytes)
-        {
-            int val = b;
-            for (int i = 0; i < 8; i++)
-            {
-                binary.append((val & 128) == 0 ? 0 : 1);
-                val <<= 1;
-            }
-            binary.append(' ');
+    public String computeTextCipher(String binaryCode) {
+        String[] code = binaryCode.split(" ");
+        String output = "";
+        for(int i=0;i<code.length;i++) {
+            output+= (char)Integer.parseInt(code[i],2);
         }
-        return binary;
-    }*/
-
+        return output;
+    }
 
 }
