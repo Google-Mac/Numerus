@@ -79,10 +79,17 @@
 
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="title_activity_caesar_cipher">CaesarCipherActivity</string>
-    <string name="vigen_re_cipher">Vigenère Cipher</string>
     <string name="columnar_transposition">Columnar Transposition</string>
     <string name="binary">Binary</string>
     <string name="title_activity_rot13">Rot13Activity</string>
     <string name="title_activity_vigenere">VigenereActivity</string>
     <string name="title_activity_column_trans">ColumnTransActivity</string>
+    <string name="binary_encoder">Binary Encoder</string>
+    <string name="clear">Clear</string>
+    <string name="text_to_binary">Text to Binary</string>
+    <string name="binary_to_text">Binary to Text</string>
+    <string name="encode">Encode</string>
+    <string name="decode">Decode</string>
+    <string name="enter_message_here">Enter message here</string>
+    <string name="encoded_message_will_appear_here">Encoded message will appear here</string>
 </resources>

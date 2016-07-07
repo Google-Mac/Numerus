@@ -1,23 +1,28 @@
 package com.myprojects.numerus.spark_000.numerus;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.NumberPicker;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class CaesarCipherActivity extends AppCompatActivity {
 
@@ -27,12 +32,15 @@ public class CaesarCipherActivity extends AppCompatActivity {
     public final static int THEME_2 = 1;
     public final static int THEME_3 = 2;
 
-    NumberPicker rotationPicker;
-    EditText inputText;
-    TextView cipherText;
-    RadioGroup radioGroup;
-    EditText codewordText;
-    Button clearButton;
+    NumberPicker rotationPicker_caesar;
+    EditText inputText_caesar;
+    TextView cipherText_caesar;
+    RadioGroup radioGroup_caesar;
+    Button clearButton_caesar;
+    ImageButton sendTextButton_caesar;
+
+    private ClipboardManager myClipboard;
+    private ClipData myClip;
 
 
     @Override
@@ -49,46 +57,45 @@ public class CaesarCipherActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        cipherText = (TextView)findViewById(R.id.textView2);
+        myClipboard = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
 
-        rotationPicker = (NumberPicker)findViewById(R.id.numberPicker);
-        rotationPicker.setMinValue(0);
-        rotationPicker.setMaxValue(25);
+        cipherText_caesar = (TextView)findViewById(R.id.textView2_caesar);
 
-        rotationPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+        View.OnLongClickListener listener = new View.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                String copyText = cipherText_caesar.getText().toString();
+                myClip = ClipData.newPlainText("copyTextCaesar", copyText);
+                myClipboard.setPrimaryClip(myClip);
+                Toast.makeText(getApplicationContext(), "Message Copied",Toast.LENGTH_SHORT).show();
+                Log.v("TAG", "button long pressed --> " + copyText);
+                return true;
+            }
+        };
+
+        cipherText_caesar.setOnLongClickListener(listener);
+
+        rotationPicker_caesar = (NumberPicker)findViewById(R.id.numberPicker_caesar);
+        rotationPicker_caesar.setMinValue(0);
+        rotationPicker_caesar.setMaxValue(25);
+
+        rotationPicker_caesar.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker numberPicker, int i, int i2) {
                 refreshCipherText();
             }
             });
 
-        codewordText = (EditText)findViewById(R.id.editText2);
-        codewordText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) { }
+        radioGroup_caesar = (RadioGroup)findViewById(R.id.radioGroup_caesar);
 
-            @Override
-            public void onTextChanged(CharSequence charSequence, int start, int count, int after) {
-                refreshCipherText();
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {}
-        });
-
-        radioGroup = (RadioGroup)findViewById(R.id.radioGroup);
-
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        radioGroup_caesar.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 switch(i) {
-                    case R.id.radioButton:
-                        codewordText.setVisibility(View.GONE);
-                        rotationPicker.setVisibility(View.VISIBLE);
+                    case R.id.radioButton_caesar:
+                        refreshCipherText();
                         break;
-                    case R.id.radioButton2:
-                        rotationPicker.setVisibility(View.GONE);
-                        codewordText.setVisibility(View.VISIBLE);
+                    case R.id.radioButton2_caesar:
+                        refreshCipherText();
                         break;
                 }
                 refreshCipherText();
@@ -96,14 +103,19 @@ public class CaesarCipherActivity extends AppCompatActivity {
         });
 
 
-        inputText = (EditText) findViewById(R.id.editText);
-        inputText.addTextChangedListener(new TextWatcher() {
+        inputText_caesar = (EditText) findViewById(R.id.editText_caesar);
+        inputText_caesar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int start, int count, int after) { }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int count, int after) {
-                refreshCipherText();
+                try {
+                    refreshCipherText();
+                } catch (Exception StringIndexOutOfBoundsException) {
+                    //prevents app from crashing when codeword is erased and prompts user
+                    Log.d("TAG", "No inputText_caesar");
+                }
             }
 
             @Override
@@ -122,30 +134,28 @@ public class CaesarCipherActivity extends AppCompatActivity {
             }
         };
 
-        inputText.setFilters(new InputFilter[]{filter});
-        codewordText.setFilters(new InputFilter[]{filter});
+        inputText_caesar.setFilters(new InputFilter[]{filter});
 
-        clearButton = (Button)findViewById(R.id.button);
-        clearButton.setOnClickListener(new View.OnClickListener() {
+        clearButton_caesar = (Button)findViewById(R.id.button_caesar);
+        clearButton_caesar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                inputText.setText("");
-                cipherText.setText("");
+                inputText_caesar.setText("");
+                cipherText_caesar.setText("");
+            }
+        });
+
+        sendTextButton_caesar = (ImageButton)findViewById(R.id.send_button_caesar);
+        sendTextButton_caesar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + ""));
+                intent.putExtra("sms_body", cipherText_caesar.getText().toString());
+                startActivity(intent);
             }
         });
 
         loadState();
-
-        switch(radioGroup.getCheckedRadioButtonId()) {
-            case R.id.radioButton:
-                codewordText.setVisibility(View.GONE);
-                rotationPicker.setVisibility(View.VISIBLE);
-                break;
-            case R.id.radioButton2:
-                rotationPicker.setVisibility(View.GONE);
-                codewordText.setVisibility(View.VISIBLE);
-                break;
-        }
 
     } //end onCreate
 
@@ -174,39 +184,38 @@ public class CaesarCipherActivity extends AppCompatActivity {
     public void onPause() {
         super.onPause();
 
-        SharedPreferences settings = getSharedPreferences("cipherPrefs", 0);
+        SharedPreferences settings = getSharedPreferences("cipherPrefsCaesar", 0);
         SharedPreferences.Editor editor = settings.edit();
         saveState(editor);
         editor.commit();
     }
 
     public void saveState(SharedPreferences.Editor editor) {
-        editor.putString("inputText", inputText.getText().toString());
-        editor.putInt("rotation", rotationPicker.getValue());
-        editor.putString("codeword", codewordText.getText().toString());
-        editor.putInt("checkedRadiobutton", radioGroup.getCheckedRadioButtonId());
+        editor.putString("inputTextCaesar", inputText_caesar.getText().toString());
+        editor.putInt("rotationCaesar", rotationPicker_caesar.getValue());
+        editor.putInt("checkedRadiobuttonCaesar", radioGroup_caesar.getCheckedRadioButtonId());
     }
 
     public void loadState() {
-        SharedPreferences settings = getSharedPreferences("cipherPrefs", 0);
+        SharedPreferences settings = getSharedPreferences("cipherPrefsCaesar", 0);
 
-        inputText.setText(settings.getString("inputText", ""));
-        rotationPicker.setValue(settings.getInt("rotation", 0));
-        codewordText.setText(settings.getString("codeword", ""));
-        radioGroup.check(settings.getInt("checkedRadiobutton", R.id.radioButton));
+        inputText_caesar.setText(settings.getString("inputTextCaesar", ""));
+        rotationPicker_caesar.setValue(settings.getInt("rotationCaesar", 0));
+        radioGroup_caesar.check(settings.getInt("checkedRadiobuttonCaesar", R.id.radioButton_caesar));
         refreshCipherText();
     }
 
     public void refreshCipherText() {
-        String output = computeCipher(inputText.getText().toString());
-        cipherText.setText(output);
+        String output = computeCipher(inputText_caesar.getText().toString());
+        cipherText_caesar.setText(output);
     }
 
     public String computeCipher(String input) {
-        if (radioGroup.getCheckedRadioButtonId() == R.id.radioButton) {
-            return computeRotationCipher(rotationPicker.getValue(), input);
-        } else if (radioGroup.getCheckedRadioButtonId() == R.id.radioButton2) {
-            return computeCodewordCipher(codewordText.getText().toString(), input);
+        if (radioGroup_caesar.getCheckedRadioButtonId() == R.id.radioButton_caesar) {
+            return computeRotationCipher(rotationPicker_caesar.getValue(), input);
+        } else if (radioGroup_caesar.getCheckedRadioButtonId() == R.id.radioButton2_caesar) {
+            //26 - x reverses the effect of whatever the chosen rotation number is
+            return computeRotationCipher(26 - rotationPicker_caesar.getValue(), input);
         }
         return "";
     }
@@ -230,24 +239,4 @@ public class CaesarCipherActivity extends AppCompatActivity {
 
         return output;
     }
-
-    public String computeCodewordCipher(String codeword, String input) {
-        int a_num = (int) 'a';
-        int A_num = (int) 'A';
-        String output = "";
-        for (int i = 0; i < input.length(); i++) {
-            int rotation = codeword.length() > 0 && codeword.charAt(i % codeword.length()) != ' ' ? (int)input.charAt(i % codeword.length()) : 0;
-            int cur = (int) input.charAt(i);
-            if (input.charAt(i) == ' ') {
-                output += " ";
-            } else if (cur >= a_num && cur < a_num + 26) {
-                output += Character.toString((char) ((((cur - a_num) + rotation) % 26) + a_num));
-            } else {
-                output += Character.toString((char) ((((cur - A_num) + rotation) % 26) + A_num));
-            }
-        }
-
-        return output;
-    }
-
 }

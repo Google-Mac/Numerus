@@ -1,6 +1,10 @@
 package com.myprojects.numerus.spark_000.numerus;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -14,14 +18,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.NumberPicker;
+import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-
-import static android.R.attr.filter;
-import static android.R.attr.x;
-import static com.myprojects.numerus.spark_000.numerus.R.id.radioGroup;
-import static com.myprojects.numerus.spark_000.numerus.R.string.binary;
+import android.widget.Toast;
 
 public class BinaryActivity extends AppCompatActivity {
 
@@ -35,6 +35,10 @@ public class BinaryActivity extends AppCompatActivity {
     TextView cipherText_binary;
     RadioGroup radioGroup_binary;
     Button clearButton_binary;
+    ImageButton sendTextButton_binary;
+
+    private ClipboardManager myClipboard;
+    private ClipData myClip;
 
 
     @Override
@@ -50,6 +54,8 @@ public class BinaryActivity extends AppCompatActivity {
         setContentView(R.layout.activity_binary);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        myClipboard = (ClipboardManager)getSystemService(CLIPBOARD_SERVICE);
 
         final InputFilter letterOnlyFilter = new InputFilter() {
             @Override
@@ -77,6 +83,19 @@ public class BinaryActivity extends AppCompatActivity {
 
         cipherText_binary = (TextView)findViewById(R.id.textView2_binary);
 
+        View.OnLongClickListener listener = new View.OnLongClickListener() {
+            public boolean onLongClick(View v) {
+                String copyText = cipherText_binary.getText().toString();
+                myClip = ClipData.newPlainText("copyTextBinary", copyText);
+                myClipboard.setPrimaryClip(myClip);
+                Toast.makeText(getApplicationContext(), "Message Copied",Toast.LENGTH_SHORT).show();
+                Log.v("TAG", "button long pressed --> " + copyText);
+                return true;
+            }
+        };
+
+        cipherText_binary.setOnLongClickListener(listener);
+
         radioGroup_binary = (RadioGroup)findViewById(R.id.radioGroup_binary);
 
         radioGroup_binary.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -99,13 +118,17 @@ public class BinaryActivity extends AppCompatActivity {
         inputText_binary.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int start, int count,
-            int
-                    after) { }
+            int after) { }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int count, int
                     after) {
-                refreshCipherText();
+                try {
+                    refreshCipherText();
+                } catch (Exception StringIndexOutOfBoundsException) {
+                    //prevents app from crashing when codeword is erased and prompts user
+                    Log.d("TAG", "No inputText_binary");
+                }
             }
 
             @Override
@@ -119,6 +142,16 @@ public class BinaryActivity extends AppCompatActivity {
             public void onClick(View view) {
                 inputText_binary.setText("");
                 cipherText_binary.setText("");
+            }
+        });
+
+        sendTextButton_binary = (ImageButton)findViewById(R.id.send_button_binary);
+        sendTextButton_binary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + ""));
+                intent.putExtra("sms_body", cipherText_binary.getText().toString());
+                startActivity(intent);
             }
         });
 

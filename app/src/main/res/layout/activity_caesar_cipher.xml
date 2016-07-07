@@ -9,11 +9,61 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Caesar Cipher"
-        android:id="@+id/textView"
+        android:text="@string/caesar_cipher"
+        android:id="@+id/textView_caesar"
         android:layout_gravity="center_horizontal"
-        android:textSize="32dp"
+        android:textSize="32sp"
         android:layout_marginTop="5dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/editText_caesar"
+        android:layout_gravity="center_vertical"
+        android:hint="@string/enter_message_here"
+        android:layout_weight="33"
+        android:layout_margin="5dp"
+        android:textSize="18sp"
+        android:singleLine="false" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:weightSum="1"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:layout_weight="33">
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2_caesar"
+            android:focusable="true"
+            android:textIsSelectable="true"
+            android:hint="@string/encoded_message_will_appear_here"
+            android:layout_margin="5dp"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:textAlignment="gravity"
+            android:padding="12dp" />
+
+        <ImageButton
+            android:id="@+id/send_button_caesar"
+            android:src="@drawable/ic_menu_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"/>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="147dp"
+        android:layout_height="wrap_content"
+        android:text="@string/clear"
+        android:id="@+id/button_caesar"
+        android:layout_gravity="center_horizontal" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -27,24 +77,24 @@
         <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/radioGroup"
+            android:id="@+id/radioGroup_caesar"
             android:layout_gravity="center_vertical">
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rotation"
-                android:id="@+id/radioButton"
+                android:text="@string/encode"
+                android:id="@+id/radioButton_caesar"
                 android:checked="true"
-                android:textSize="18dp" />
+                android:textSize="18sp" />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Code Word"
-                android:id="@+id/radioButton2"
+                android:text="@string/decode"
+                android:id="@+id/radioButton2_caesar"
                 android:checked="false"
-                android:textSize="18dp" />
+                android:textSize="18sp" />
 
         </RadioGroup>
 
@@ -55,52 +105,12 @@
         <NumberPicker
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/numberPicker"
+            android:id="@+id/numberPicker_caesar"
             android:orientation="vertical"
             android:baselineAligned="false"
             android:layout_marginLeft="10dp"
             android:layout_gravity="center_vertical|right" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText2"
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="center_vertical|right" />
-
     </LinearLayout>
-
-    <Button
-        android:layout_width="147dp"
-        android:layout_height="wrap_content"
-        android:text="Clear"
-        android:id="@+id/button"
-        android:layout_gravity="center_horizontal" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:id="@+id/editText"
-        android:layout_gravity="center_vertical"
-        android:hint="Enter message here"
-        android:layout_weight="33"
-        android:layout_margin="5dp"
-        android:textSize="18dp"
-        android:singleLine="false" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:id="@+id/textView2"
-        android:focusable="true"
-        android:textIsSelectable="true"
-        android:hint="Encoded message will appear here"
-        android:layout_weight="33"
-        android:layout_margin="5dp"
-        android:textSize="18dp"
-        android:layout_gravity="center"
-        android:gravity="center_vertical"
-        android:textAlignment="gravity"
-        android:padding="12dp" />
 
 </LinearLayout>
