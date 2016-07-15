@@ -1,35 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="com.myprojects.numerus.spark_000.numerus.ColumnTransActivity">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay"/>
-
-    </android.support.design.widget.AppBarLayout>
-
-    <include layout="@layout/content_column_trans"/>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_dialog_email"/>
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/columnar_transposition"
+        android:id="@+id/textView_colTrans"
+        android:layout_gravity="center_horizontal"
+        android:textSize="32sp"
+        android:layout_marginTop="5dp" />
 
-</android.support.design.widget.CoordinatorLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/editText_colTrans"
+        android:layout_gravity="center_vertical"
+        android:hint="@string/enter_message_here"
+        android:layout_weight="33"
+        android:layout_margin="5dp"
+        android:textSize="18sp"
+        android:singleLine="false" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:weightSum="1"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:layout_weight="33">
+
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2_colTrans"
+            android:focusable="true"
+            android:textIsSelectable="true"
+            android:hint="@string/encoded_message_will_appear_here"
+            android:layout_margin="5dp"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:textAlignment="gravity"
+            android:padding="12dp" />
+
+        <ImageButton
+            android:id="@+id/send_button_colTrans"
+            android:src="@drawable/ic_menu_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"/>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="147dp"
+        android:layout_height="wrap_content"
+        android:text="@string/clear"
+        android:id="@+id/button_colTrans"
+        android:layout_gravity="center_horizontal" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:weightSum="1"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:layout_weight="33">
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioGroup_colTrans"
+            android:layout_gravity="center_vertical">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/encode"
+                android:id="@+id/radioButton_colTrans"
+                android:checked="true"
+                android:textSize="18sp" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/decode"
+                android:id="@+id/radioButton2_colTrans"
+                android:checked="false"
+                android:textSize="18sp" />
+
+        </RadioGroup>
+
+        <Space
+            android:layout_width="94dp"
+            android:layout_height="match_parent" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText2_colTrans"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_gravity="center_vertical|end" />
+
+    </LinearLayout>
+
+</LinearLayout>

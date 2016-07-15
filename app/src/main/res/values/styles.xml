@@ -2,15 +2,33 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColorPrimary">@color/textColorPrimary</item>
-        <item name="android:textColorSecondary">@color/textColorSecondary</item>
-        <item name="android:textColorPrimaryInverse">@color/textColorPrimaryInverse</item>
-        <item name="android:textColorSecondaryInverse">@color/textColorSecondaryInverse</item>
+        <item name="windowActionBar">
+            false
+        </item>
+        <item name="windowNoTitle">
+            true
+        </item>
+        <item name="colorPrimary">
+            @color/colorPrimary
+        </item>
+        <item name="colorPrimaryDark">
+            @color/colorPrimaryDark
+        </item>
+        <item name="colorAccent">
+            @color/colorAccent
+        </item>
+        <item name="android:textColorPrimary">
+            @color/textColorPrimary
+        </item>
+        <item name="android:textColorSecondary">
+            @color/textColorSecondary
+        </item>
+        <item name="android:textColorPrimaryInverse">
+            @color/textColorPrimaryInverse
+        </item>
+        <item name="android:textColorSecondaryInverse">
+            @color/textColorSecondaryInverse
+        </item>
     </style>
 
     <!--<item name="themedMenuStoryDrawable">@drawable/ic_subject_white_24dp</item>
@@ -18,11 +36,21 @@
 
     <style name="THEME_2" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="colorPrimary">@color/color2Primary</item>
-        <item name="colorPrimaryDark">@color/color2PrimaryDark</item>
-        <item name="colorAccent">@color/color2Accent</item>
+        <item name="windowActionBar">
+            false
+        </item>
+        <item name="windowNoTitle">
+            true
+        </item>
+        <item name="colorPrimary">
+            @color/color2Primary
+        </item>
+        <item name="colorPrimaryDark">
+            @color/color2PrimaryDark
+        </item>
+        <item name="colorAccent">
+            @color/color2Accent
+        </item>
     </style>
 
     <!--<item name="themedMenuStoryDrawable">@drawable/ic_subject_black_24dp</item>
@@ -31,12 +59,30 @@
 
     <style name="THEME_3" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="colorPrimary">@color/color3Primary</item>
-        <item name="colorPrimaryDark">@color/color3PrimaryDark</item>
-        <item name="colorAccent">@color/color3Accent</item>
+        <item name="windowActionBar">
+            false
+        </item>
+        <item name="windowNoTitle">
+            true
+        </item>
+        <item name="colorPrimary">
+            @color/color3Primary
+        </item>
+        <item name="colorPrimaryDark">
+            @color/color3PrimaryDark
+        </item>
+        <item name="colorAccent">
+            @color/color3Accent
+        </item>
     </style>
+
+
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">
+            @drawable/background_splash
+        </item>
+    </style>
+
 
     <style name="AppTheme.Dark.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 

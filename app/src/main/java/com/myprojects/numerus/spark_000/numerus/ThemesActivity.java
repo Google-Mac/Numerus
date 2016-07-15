@@ -71,6 +71,14 @@ public class ThemesActivity extends AppCompatActivity implements View.OnClickLis
         startActivity(intent1);
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent1 = new Intent(this, NavigationActivity.class);
+        startActivity(intent1);
+        super.onBackPressed();  // optional depending on your needs
+    }
+
     /*public class LoadToastOperation extends AsyncTask<String, Void, String> {
 
         @Override

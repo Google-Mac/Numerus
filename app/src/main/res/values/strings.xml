@@ -92,4 +92,8 @@
     <string name="decode">Decode</string>
     <string name="enter_message_here">Enter message here</string>
     <string name="encoded_message_will_appear_here">Encoded message will appear here</string>
+    <string
+        name="title_activity_splash_screen">
+        SplashScreenActivity
+    </string>
 </resources>

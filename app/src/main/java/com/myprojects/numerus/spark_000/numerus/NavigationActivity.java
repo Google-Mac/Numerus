@@ -65,9 +65,11 @@ public class NavigationActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
         }
+        //took this out because it let the app revert to the previous theme if the back button was pressed
+        /*else {
+            super.onBackPressed();
+        }*/
     }
 
     @Override

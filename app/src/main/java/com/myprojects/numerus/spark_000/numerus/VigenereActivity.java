@@ -244,28 +244,45 @@ public class VigenereActivity extends AppCompatActivity {
         return "";
     }
 
-
     public String encrypt(String text, final String key) {
+        int a_num = (int) 'a';
+        int A_num = (int) 'A';
         String output = "";
-        text = text.toUpperCase();
         for (int i = 0, j = 0; i < text.length(); i++) {
-            char c = text.charAt(i);
-            if (c < 'A' || c > 'Z') continue;
-            output += (char)((c + key.charAt(j) - 2 * 'A') % 26 + 'A');
-            j = ++j % key.length();
+            int cur = (int) text.charAt(i);
+            //check if lowercase or uppercase
+            if (text.charAt(i) == ' ') {
+                output += " ";
+            } else if (cur >= 'a' && cur < 'z' + 26) {
+                output += Character.toString((char) ((cur + key.charAt(j) - 2 * 'a') % 26 + 'a'));
+                j = ++j % key.length();
+            } else {
+                output += Character.toString((char) ((cur + key.charAt(j) - 2 * 'A') % 26 + 'A'));
+                j = ++j % key.length();
+            }
         }
+
         return output;
     }
 
     public String decrypt(String text, final String key) {
+        int a_num = (int) 'a';
+        int A_num = (int) 'A';
         String output = "";
-        text = text.toUpperCase();
         for (int i = 0, j = 0; i < text.length(); i++) {
-            char c = text.charAt(i);
-            if (c < 'A' || c > 'Z') continue;
-            output += (char)((c - key.charAt(j) + 26) % 26 + 'A');
-            j = ++j % key.length();
+            int cur = text.charAt(i);
+            //check if lowercase or uppercase
+            if (text.charAt(i) == ' ') {
+                output += " ";
+            } else if (cur < 'a' || cur > 'z') {
+                output += Character.toString((char) ((cur - key.charAt(j) + 26) % 26 + 'a'));
+                j = ++j % key.length();
+            } else {
+                output += Character.toString((char) ((cur - key.charAt(j) + 26) % 26 + 'A'));
+                j = ++j % key.length();
+            }
         }
+
         return output;
     }
 

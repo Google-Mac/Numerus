@@ -18,7 +18,7 @@
     <!-- Theme 1 -->
     <color name="colorPrimary">#000000</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#2e8bba</color>
 
     <!-- Theme 2 -->
     <color name="color2Primary">#d41c1c</color>
