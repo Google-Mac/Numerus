@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.myprojects.numerus.spark_000.numerus.R;
+import com.projects.numerus.googlemac.numerus.R;
 
 /**
  * A simple {@link Fragment} subclass.

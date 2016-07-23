@@ -1,4 +1,4 @@
-package com.myprojects.numerus.spark_000.numerus;
+package com.projects.numerus.googlemac.numerus;
 
 import android.app.Activity;
 import android.content.Intent;

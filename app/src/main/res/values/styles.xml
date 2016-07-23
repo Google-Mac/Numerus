@@ -84,6 +84,20 @@
     </style>
 
 
+    <!--Start Invites Theme-->
+    <!-- Dialog Activity with no Title -->
+    <style name="ThemeOverlay.MyDialogActivity" parent="Theme.AppCompat.Light.Dialog">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- Blue Buttons -->
+    <style name="ThemeOverlay.MyBlueButton" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="colorButtonNormal">@color/colorAccent</item>
+    </style>
+    <!--End Invites Theme-->
+
+
     <style name="AppTheme.Dark.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
     <style name="AppTheme.Dark.PopupOverlay" parent="ThemeOverlay.AppCompat"/>

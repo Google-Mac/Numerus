@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1046987682988",
+    "firebase_url": "https://numerus-4c9eb.firebaseio.com",
+    "project_id": "numerus-4c9eb",
+    "storage_bucket": "numerus-4c9eb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1046987682988:android:311b45434dc721aa",
+        "android_client_info": {
+          "package_name": "com.projects.numerus.googlemac.numerus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1046987682988-32nptk7t6r8g1np2e514g6difork3egf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBT3VAhQbUOkxu3Lk2CU_QhvTWTBM1I6BQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

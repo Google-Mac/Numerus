@@ -9,13 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.myprojects.numerus.spark_000.numerus.CaesarCipherActivity;
-import com.myprojects.numerus.spark_000.numerus.ColumnTransActivity;
-import com.myprojects.numerus.spark_000.numerus.R;
-import com.myprojects.numerus.spark_000.numerus.BinaryActivity;
-import com.myprojects.numerus.spark_000.numerus.SharedPreferencesManager;
-import com.myprojects.numerus.spark_000.numerus.Utils;
-import com.myprojects.numerus.spark_000.numerus.VigenereActivity;
+import com.projects.numerus.googlemac.numerus.CaesarCipherActivity;
+import com.projects.numerus.googlemac.numerus.ColumnTransActivity;
+import com.projects.numerus.googlemac.numerus.R;
+import com.projects.numerus.googlemac.numerus.BinaryActivity;
+import com.projects.numerus.googlemac.numerus.SharedPreferencesManager;
+import com.projects.numerus.googlemac.numerus.Utils;
+import com.projects.numerus.googlemac.numerus.VigenereActivity;
 
 /**
  * A simple {@link Fragment} subclass.

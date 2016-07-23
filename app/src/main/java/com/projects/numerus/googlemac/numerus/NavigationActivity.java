@@ -1,7 +1,6 @@
-package com.myprojects.numerus.spark_000.numerus;
+package com.projects.numerus.googlemac.numerus;
 
 import android.content.Intent;
-import android.preference.PreferenceManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
@@ -17,7 +16,6 @@ import android.view.MenuItem;
 import menu.CiphersFragment;
 import menu.HomeFragment;
 import menu.LearnFragment;
-import menu.ShareFragment;
 
 
 public class NavigationActivity extends AppCompatActivity
@@ -114,9 +112,8 @@ public class NavigationActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.main_container, new LearnFragment());
             fragmentTransaction.commit();
         } else if (id == R.id.nav_share_with_friends) {
-            fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.main_container, new ShareFragment());
-            fragmentTransaction.commit();
+            Intent intent_share = new Intent(NavigationActivity.this, ShareActivity.class);
+            startActivity(intent_share);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

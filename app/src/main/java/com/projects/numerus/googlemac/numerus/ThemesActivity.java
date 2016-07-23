@@ -1,23 +1,15 @@
-package com.myprojects.numerus.spark_000.numerus;
+package com.projects.numerus.googlemac.numerus;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import net.steamcrafted.loadtoast.LoadToast;
 
-import static android.R.attr.button;
-import static android.R.attr.theme;
-import static com.myprojects.numerus.spark_000.numerus.R.id.button_theme1;
+import static com.projects.numerus.googlemac.numerus.R.id.button_theme1;
 
 public class ThemesActivity extends AppCompatActivity implements View.OnClickListener {
 

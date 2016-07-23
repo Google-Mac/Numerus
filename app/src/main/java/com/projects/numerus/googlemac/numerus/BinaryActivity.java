@@ -1,4 +1,4 @@
-package com.myprojects.numerus.spark_000.numerus;
+package com.projects.numerus.googlemac.numerus;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -22,6 +22,9 @@ import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import static android.R.attr.digits;
+import static com.projects.numerus.googlemac.numerus.R.string.binary;
 
 public class BinaryActivity extends AppCompatActivity {
 
@@ -69,13 +72,17 @@ public class BinaryActivity extends AppCompatActivity {
             }
         };
 
-        final InputFilter numberOnlyFilter = new InputFilter() {
+        final InputFilter binaryOnlyFilter = new InputFilter() {
             @Override
             public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
                 for ( int i = start; i < end; i++) {
-                    if (!Character.isDigit(source.charAt(i)) && source.charAt(i) != ' ') {
-                        return "";
+                    if(source.equals("")){ // for backspace
+                        return source;
                     }
+                    if(source.toString().matches("[01 ]+")) {
+                        return source;
+                    }
+                    return "";
                 }
                 return null;
             }
@@ -106,7 +113,7 @@ public class BinaryActivity extends AppCompatActivity {
                         inputText_binary.setFilters(new InputFilter[]{letterOnlyFilter});
                         break;
                     case R.id.radioButton2_binary:
-                        inputText_binary.setFilters(new InputFilter[]{numberOnlyFilter});
+                        inputText_binary.setFilters(new InputFilter[]{binaryOnlyFilter});
                         break;
                 }
                 refreshCipherText();
@@ -157,13 +164,14 @@ public class BinaryActivity extends AppCompatActivity {
 
         loadState();
 
+        /* TODO: Remove unused methods once project is complete */
         switch(radioGroup_binary.getCheckedRadioButtonId()) {
             case R.id.radioButton_binary:
                 inputText_binary.setFilters(new InputFilter[]{letterOnlyFilter});
                 /*computeBinaryCipher(inputText_binary.getText().toString());*/
                 break;
             case R.id.radioButton2_binary:
-                inputText_binary.setFilters(new InputFilter[]{numberOnlyFilter});
+                inputText_binary.setFilters(new InputFilter[]{binaryOnlyFilter});
                 /*computeTextCipher(inputText_binary.getText().toString());*/
                 break;
         }

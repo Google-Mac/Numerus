@@ -81,7 +81,7 @@
     <string name="title_activity_caesar_cipher">CaesarCipherActivity</string>
     <string name="columnar_transposition">Columnar Transposition</string>
     <string name="binary">Binary</string>
-    <string name="title_activity_rot13">Rot13Activity</string>
+    <string name="title_activity_binary">BinaryActivity</string>
     <string name="title_activity_vigenere">VigenereActivity</string>
     <string name="title_activity_column_trans">ColumnTransActivity</string>
     <string name="binary_encoder">Binary Encoder</string>
@@ -96,4 +96,34 @@
         name="title_activity_splash_screen">
         SplashScreenActivity
     </string>
+
+
+    <!--Invite Strings-->
+    <string name="action_deep_link">
+        com.google.android.gms.samples.appinvite.DEEP_LINK_ACTION
+    </string>
+    <string name="invite">Send invitations!</string>
+    <string name="welcome">Invites</string>
+    <string name="referrer_hint">Deep link not provided</string>
+    <string name="deep_link_default">Deep link not set</string>
+    <string name="invitation_id_default">Invitation ID not set</string>
+    <string name="invite_friends">Invite Friends</string>
+
+    <!-- TODO: Change invitation_custom_image for email link -->
+    <string name="invitation_title">Send App Invite Quickstart Invitation</string>
+    <string name="invitation_message">This app is great! We can send encoded messages!</string>
+    <string name="invitation_deep_link">https://google-mac.github.io/Numerus/</string>
+    <string name="invitation_custom_image">https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png</string>
+    <string name="invitation_cta">Install!</string>
+
+    <string name="deep_link_fmt" formatted="false">Deep Link: %s</string>
+    <string name="invitation_id_fmt" formatted="false">Invitation ID: %s</string>
+
+    <string name="sent_invitations_fmt" formatted="false">Sent %d invitations</string>
+    <string name="send_failed">Sending invitations failed</string>
+    <string name="invite_dialog_title">You got an invitation!</string>
+
+    <string name="google_play_services_error">Google Play Services Error</string>
+    <string name="website_reference">google-mac.github.io/Numerus</string>
+
 </resources>
